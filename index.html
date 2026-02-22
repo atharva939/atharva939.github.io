@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atharva Lakade | AI Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#0f0f0f,#1a0000);
+    color:white;
+    scroll-behavior:smooth;
+    overflow-x:hidden;
+}
+
+/* PARTICLES */
+#particles{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
+}
+
+/* NAV */
+header{
+    position:fixed;
+    width:100%;
+    backdrop-filter:blur(10px);
+    background:rgba(0,0,0,0.4);
+    z-index:1000;
+}
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 10%;
+}
+.logo{
+    font-weight:700;
+    font-size:1.5rem;
+    color:#ff3b3b;
+}
+.nav-links{
+    display:flex;
+    list-style:none;
+}
+.nav-links li{margin-left:25px}
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    transition:.3s;
+}
+.nav-links a:hover{color:#ff3b3b}
+.hamburger{display:none}
+
+/* HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+.glass{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:20px;
+    padding:50px;
+    box-shadow:0 0 30px rgba(255,59,59,0.2);
+}
+.hero h1 span{color:#ff3b3b}
+.typing{
+    color:#ff3b3b;
+    border-right:2px solid #ff3b3b;
+    padding-right:5px;
+}
+.btn{
+    display:inline-block;
+    padding:12px 25px;
+    background:#ff3b3b;
+    color:white;
+    border-radius:25px;
+    text-decoration:none;
+    margin:10px;
+    transition:.3s;
+}
+.btn:hover{background:#cc0000}
+.btn-outline{
+    display:inline-block;
+    padding:12px 25px;
+    border:2px solid #ff3b3b;
+    color:#ff3b3b;
+    border-radius:25px;
+    text-decoration:none;
+    margin:10px;
+    transition:.3s;
+}
+.btn-outline:hover{
+    background:#ff3b3b;
+    color:white;
+}
+
+/* SECTION */
+.section{
+    padding:120px 10%;
+    opacity:0;
+    transform:translateY(40px);
+    transition:.8s;
+}
+.section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+    font-size:2.5rem;
+    color:#ff3b3b;
+}
+
+/* ABOUT */
+.about-container{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:50px;
+}
+.glass-card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:20px;
+    padding:40px;
+}
+.about-left h3{
+    color:#ff3b3b;
+    margin-top:20px;
+}
+.about-left p{
+    margin-top:10px;
+    line-height:1.6;
+    color:#ddd;
+}
+.skill-box{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:20px;
+    padding:30px;
+    margin-bottom:30px;
+    transition:.3s;
+}
+.skill-box:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(255,59,59,0.3);
+}
+.skill-box h4{
+    color:#ff3b3b;
+    margin-bottom:10px;
+}
+.skill-box ul{
+    list-style:none;
+}
+.skill-box li{
+    margin-bottom:8px;
+    color:#ddd;
+}
+
+/* PROJECTS */
+.project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+.project-card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.15);
+    padding:30px;
+    border-radius:20px;
+    transition:.3s;
+}
+.project-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px rgba(255,59,59,0.3);
+}
+
+/* EDUCATION */
+.timeline{
+    position:relative;
+    max-width:800px;
+    margin:auto;
+}
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:35px;
+    top:0;
+    width:4px;
+    height:100%;
+    background:#ff3b3b;
+}
+.timeline-item{
+    position:relative;
+    margin-bottom:60px;
+    padding-left:90px;
+}
+.timeline-dot{
+    position:absolute;
+    left:15px;
+    width:40px;
+    height:40px;
+    background:#ff3b3b;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+}
+.timeline-content{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.15);
+    padding:25px;
+    border-radius:20px;
+}
+.edu-institute{font-weight:600}
+.edu-year{color:#ccc}
+
+/* CONTACT */
+.contact-clean{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:25px;
+    margin-top:40px;
+}
+.contact-clean a{
+    font-size:18px;
+    text-decoration:none;
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    transition:.3s;
+}
+.contact-clean a i{color:#ff3b3b}
+.contact-clean a:hover{
+    color:#ff3b3b;
+    transform:translateY(-3px);
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .about-container{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+    .nav-links{
+        display:none;
+        flex-direction:column;
+        position:absolute;
+        top:60px;
+        right:0;
+        background:rgba(0,0,0,0.9);
+        width:200px;
+        padding:20px;
+    }
+    .nav-links.active{display:flex}
+    .hamburger{
+        display:block;
+        cursor:pointer;
+        font-size:1.8rem;
+        color:#ff3b3b;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<header>
+<nav class="navbar">
+<div class="logo">Atharva Lakade</div>
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<div class="hamburger">&#9776;</div>
+</nav>
+</header>
+
+<section id="home" class="hero">
+<div class="glass">
+<h1>Hello, I'm <span>Atharva Lakade</span></h1>
+<h2>I am a <span class="typing"></span></h2>
+<a href="#projects" class="btn">View Projects</a>
+</div>
+</section>
+
+<section id="about" class="section">
+<h2 class="section-title">About Me</h2>
+<div class="about-container">
+
+<div class="glass-card about-left">
+<h3>Who Am I?</h3>
+<p>I'm Atharva, a second-year student studying Data Science and Artificial Intelligence who is enthusiastic about creating clever solutions. I enjoy investigating machine learning and constantly improving my technical abilities.</p>
+
+<h3>My Journey</h3>
+<p>Participated in Smart India Hackathon (SIH), improving teamwork and real-world problem solving skills.</p>
+
+<h3>Beyond Academics</h3>
+<p>I actively engage in coding communities and practical AI projects to expand my expertise.</p>
+
+<h3>What Drives Me</h3>
+<p>My objective is to develop into a proficient Data Scientist who produces significant breakthroughs.</p>
+</div>
+
+<div>
+<div class="skill-box">
+<h4>Programming Languages</h4>
+<ul>
+<li>Python</li>
+<li>C++</li>
+<li>SQL</li>
+</ul>
+</div>
+
+<div class="skill-box">
+<h4>AI / ML Tools</h4>
+<ul>
+<li>Pandas</li>
+<li>NumPy</li>
+</ul>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="projects" class="section">
+<h2 class="section-title">Projects</h2>
+<div class="project-grid">
+<div class="project-card">
+<h3>Portfolio Website</h3>
+<p>Glassmorphism AI themed portfolio.</p>
+</div>
+</div>
+</section>
+
+<section id="education" class="section">
+<h2 class="section-title">Education</h2>
+<div class="timeline">
+
+<div class="timeline-item">
+<div class="timeline-dot"><i class="fas fa-school"></i></div>
+<div class="timeline-content">
+<h3>10th</h3>
+<p class="edu-institute">Velammal International School, Chennai</p>
+<p class="edu-year">2021 – 2022</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"><i class="fas fa-graduation-cap"></i></div>
+<div class="timeline-content">
+<h3>12th</h3>
+<p class="edu-institute">Velammal International School, Chennai</p>
+<p class="edu-year">2023 – 2024</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"><i class="fas fa-brain"></i></div>
+<div class="timeline-content">
+<h3>B.E Artificial Intelligence & Data Science</h3>
+<p class="edu-institute">MET BKC, Nashik</p>
+<p class="edu-year">2024 – Present</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="contact" class="section">
+<h2 class="section-title">Contact</h2>
+<div class="contact-clean">
+<a href="https://github.com/atharva939" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+<a href="https://www.linkedin.com/in/atharva-lakade/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:atharvalakade05@gmail.com"><i class="fas fa-envelope"></i> atharvalakade05@gmail.com</a>
+</div>
+</section>
+
+<footer>
+<p>© 2026 Atharva Lakade</p>
+</footer>
+
+<script>
+const hamburger=document.querySelector(".hamburger");
+const navLinks=document.querySelector(".nav-links");
+hamburger.addEventListener("click",()=>navLinks.classList.toggle("active"));
+
+const typing=document.querySelector(".typing");
+const words=["AI Student","Web Developer","Problem Solver"];
+let i=0,j=0,deleting=false;
+function type(){
+let current=words[i];
+if(!deleting){
+typing.textContent=current.slice(0,j++);
+if(j>current.length){deleting=true;setTimeout(type,1000);return;}
+}else{
+typing.textContent=current.slice(0,j--);
+if(j<0){deleting=false;i=(i+1)%words.length;}
+}
+setTimeout(type,deleting?50:100);
+}
+type();
+
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+if(sec.getBoundingClientRect().top<window.innerHeight-100){
+sec.classList.add("show");
+}
+});
+});
+
+/* PARTICLES */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+class Particle{
+constructor(){
+this.x=Math.random()*canvas.width;
+this.y=Math.random()*canvas.height;
+this.size=Math.random()*2+1;
+this.speedX=(Math.random()-0.5)*1;
+this.speedY=(Math.random()-0.5)*1;
+}
+update(){
+this.x+=this.speedX;
+this.y+=this.speedY;
+if(this.x>canvas.width||this.x<0) this.speedX*=-1;
+if(this.y>canvas.height||this.y<0) this.speedY*=-1;
+}
+draw(){
+ctx.fillStyle="rgba(255,59,59,0.8)";
+ctx.beginPath();
+ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+ctx.fill();
+}
+}
+function init(){particles=[];for(let i=0;i<100;i++)particles.push(new Particle());}
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{p.update();p.draw();});
+requestAnimationFrame(animate);
+}
+init();
+animate();
+</script>
+
+</body>
+</html>
