@@ -1,517 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atharva Lakade | AI Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#0f0f0f,#1a0000);
-    color:white;
-    scroll-behavior:smooth;
-    overflow-x:hidden;
-}
-
-/* PARTICLES */
-#particles{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:-2;
-}
-
-/* NAV */
-header{
-    position:fixed;
-    width:100%;
-    backdrop-filter:blur(10px);
-    background:rgba(0,0,0,0.4);
-    z-index:1000;
-}
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 10%;
-}
-.logo{
-    font-weight:700;
-    font-size:1.5rem;
-    color:#ff3b3b;
-}
-.nav-links{
-    display:flex;
-    list-style:none;
-}
-.nav-links li{margin-left:25px}
-.nav-links a{
-    text-decoration:none;
-    color:white;
-    transition:.3s;
-}
-.nav-links a:hover{color:#ff3b3b}
-.hamburger{display:none}
-
-/* HERO */
-.hero{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-}
-.glass{
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.15);
-    border-radius:20px;
-    padding:50px;
-    box-shadow:0 0 30px rgba(255,59,59,0.2);
-}
-.hero h1 span{color:#ff3b3b}
-.typing{
-    color:#ff3b3b;
-    border-right:2px solid #ff3b3b;
-    padding-right:5px;
-}
-.btn{
-    display:inline-block;
-    padding:12px 25px;
-    background:#ff3b3b;
-    color:white;
-    border-radius:25px;
-    text-decoration:none;
-    margin:10px;
-    transition:.3s;
-}
-.btn:hover{background:#cc0000}
-.btn-outline{
-    display:inline-block;
-    padding:12px 25px;
-    border:2px solid #ff3b3b;
-    color:#ff3b3b;
-    border-radius:25px;
-    text-decoration:none;
-    margin:10px;
-    transition:.3s;
-}
-.btn-outline:hover{
-    background:#ff3b3b;
-    color:white;
-}
-
-/* SECTION */
-.section{
-    padding:120px 10%;
-    opacity:0;
-    transform:translateY(40px);
-    transition:.8s;
-}
-.section.show{
-    opacity:1;
-    transform:translateY(0);
-}
-.section-title{
-    text-align:center;
-    margin-bottom:60px;
-    font-size:2.5rem;
-    color:#ff3b3b;
-}
-
-/* ABOUT */
-.about-container{
-    display:grid;
-    grid-template-columns:1.3fr 1fr;
-    gap:50px;
-}
-.glass-card{
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.15);
-    border-radius:20px;
-    padding:40px;
-}
-.about-left h3{
-    color:#ff3b3b;
-    margin-top:20px;
-}
-.about-left p{
-    margin-top:10px;
-    line-height:1.6;
-    color:#ddd;
-}
-.skill-box{
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.15);
-    border-radius:20px;
-    padding:30px;
-    margin-bottom:30px;
-    transition:.3s;
-}
-.skill-box:hover{
-    transform:translateY(-8px);
-    box-shadow:0 0 25px rgba(255,59,59,0.3);
-}
-.skill-box h4{
-    color:#ff3b3b;
-    margin-bottom:10px;
-}
-.skill-box ul{
-    list-style:none;
-}
-.skill-box li{
-    margin-bottom:8px;
-    color:#ddd;
-}
-
-/* PROJECTS */
-.project-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
-}
-.project-card{
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.15);
-    padding:30px;
-    border-radius:20px;
-    transition:.3s;
-}
-.project-card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 25px rgba(255,59,59,0.3);
-}
-
-/* EDUCATION */
-.timeline{
-    position:relative;
-    max-width:800px;
-    margin:auto;
-}
-.timeline::before{
-    content:"";
-    position:absolute;
-    left:35px;
-    top:0;
-    width:4px;
-    height:100%;
-    background:#ff3b3b;
-}
-.timeline-item{
-    position:relative;
-    margin-bottom:60px;
-    padding-left:90px;
-}
-.timeline-dot{
-    position:absolute;
-    left:15px;
-    width:40px;
-    height:40px;
-    background:#ff3b3b;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-}
-.timeline-content{
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.15);
-    padding:25px;
-    border-radius:20px;
-}
-.edu-institute{font-weight:600}
-.edu-year{color:#ccc}
-
-/* CONTACT */
-.contact-clean{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:25px;
-    margin-top:40px;
-}
-.contact-clean a{
-    font-size:18px;
-    text-decoration:none;
-    color:white;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    transition:.3s;
-}
-.contact-clean a i{color:#ff3b3b}
-.contact-clean a:hover{
-    color:#ff3b3b;
-    transform:translateY(-3px);
-}
-
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:20px;
-    margin-top:40px;
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-    .about-container{grid-template-columns:1fr}
-}
-@media(max-width:768px){
-    .nav-links{
-        display:none;
-        flex-direction:column;
-        position:absolute;
-        top:60px;
-        right:0;
-        background:rgba(0,0,0,0.9);
-        width:200px;
-        padding:20px;
-    }
-    .nav-links.active{display:flex}
-    .hamburger{
-        display:block;
-        cursor:pointer;
-        font-size:1.8rem;
-        color:#ff3b3b;
-    }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atharva Lakade — AI & Data Science</title>
+  <meta name="description" content="Portfolio of Atharva Lakade — AI & Data Science student, machine learning enthusiast, and builder.">
+  
+  <!-- Modern Clean Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#hero" class="brand-logo" aria-label="Atharva's Portfolio">
+        <img src="https://github.com/atharva939.png" alt="Atharva" class="brand-avatar" onerror="this.onerror=null; this.src='avatar.jpg';">
+        <span class="logo-text">Atharva's Portfolio</span>
+      </a>
 
-<canvas id="particles"></canvas>
+      <nav class="site-nav" id="siteNav">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
 
-<header>
-<nav class="navbar">
-<div class="logo">Atharva Lakade</div>
-<ul class="nav-links">
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#education">Education</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-<div class="hamburger">&#9776;</div>
-</nav>
-</header>
+      <div class="header-actions">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
 
-<section id="home" class="hero">
-<div class="glass">
-<h1>Hello, I'm <span>Atharva Lakade</span></h1>
-<h2>I am a <span class="typing"></span></h2>
-<a href="#projects" class="btn">View Projects</a>
-</div>
-</section>
+        <button id="mobileNavToggle" class="mobile-toggle icon-btn" aria-label="Toggle navigation menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-<section id="about" class="section">
-<h2 class="section-title">About Me</h2>
-<div class="about-container">
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-container">
 
-<div class="glass-card about-left">
-<h3>Who Am I?</h3>
-<p>I'm Atharva, a second-year student studying Data Science and Artificial Intelligence who is enthusiastic about creating clever solutions. I enjoy investigating machine learning and constantly improving my technical abilities.</p>
+        <h1 class="hero-title">
+          Atharva Lakade
+        </h1>
 
-<h3>My Journey</h3>
-<p>Participated in Smart India Hackathon (SIH), improving teamwork and real-world problem solving skills.</p>
+        <p class="hero-subtitle">
+          AI &amp; Data Science student at MET BKC, Nashik. Exploring deep learning, transformer architectures, and data engineering to build pragmatic intelligent systems.
+        </p>
 
-<h3>Beyond Academics</h3>
-<p>I actively engage in coding communities and practical AI projects to expand my expertise.</p>
+        <div class="hero-cta-group">
+          <a href="#projects" class="btn btn-primary">
+            Explore Work
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+          <button id="heroCopyEmail" class="btn btn-secondary" data-email="atharvalakade05@gmail.com">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span class="copy-label">Copy Email</span>
+          </button>
+          <a href="https://github.com/atharva939" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" aria-label="GitHub Profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/atharva-lakade/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" aria-label="LinkedIn Profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
 
-<h3>What Drives Me</h3>
-<p>My objective is to develop into a proficient Data Scientist who produces significant breakthroughs.</p>
-</div>
-
-<div>
-<div class="skill-box">
-<h4>Programming Languages</h4>
-<ul>
-<li>Python</li>
-<li>SQL</li>
-</ul>
-</div>
-
-<div class="skill-box">
-<h4>AI / ML Tools</h4>
-<ul>
-<li>Pandas</li>
-<li>NumPy</li>
-<li>Matplotlib</li>
-</ul>
-</div>
-</div>
-
-</div>
-</section>
-
-<section id="projects" class="section">
-    <h2 class="section-title">Projects</h2>
-
-    <div class="project-grid">
-        <div class="project-card">
-            <h3>Personal Portfolio Website</h3>
-            <p>
-                Designed and developed a responsive personal portfolio to showcase my
-                skills, projects, education, and contact information. The website
-                features a modern glassmorphism interface, animated particle background,
-                typing animation, smooth scrolling, and a mobile-friendly navigation
-                menu, providing an engaging and professional user experience.
-            </p>
-
-    <a href="https://github.com/atharva939"
-       target="_blank"
-       class="btn">
-        <i class="fab fa-github"></i> View on GitHub
-    </a>
-</div>
-
-        <!-- Climate Temperature EDA -->
-        <div class="project-card">
-            <h3>Climate Temperature EDA</h3>
-            <p>
-                Performed Exploratory Data Analysis (EDA) on historical climate
-                temperature data using Python, Pandas, NumPy, Matplotlib, and
-                Seaborn. Analyzed temperature trends, cleaned datasets, and
-                created visualizations to uncover meaningful climate insights.
-            </p>
-
-            <a href="https://github.com/atharva939/Climate_Temprature_EDA"
-               target="_blank"
-               class="btn">
-                <i class="fab fa-github"></i> View on GitHub
-            </a>
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">01 / Profile</span>
+          <h2 class="section-title">About Me</h2>
         </div>
 
+        <div class="about-grid">
+          <div class="about-main">
+            <p class="lead-text">
+              I am an Artificial Intelligence &amp; Data Science undergraduate passionate about building high-impact computational systems and understanding machine learning from foundational math up to model deployment.
+            </p>
+            <p class="body-text">
+              My engineering approach prioritizes deep conceptual understanding over black-box abstractions. Whether training compact transformer models from scratch or uncovering statistical signals in complex datasets, I focus on clean code, reproducibility, and real-world utility.
+            </p>
+            <p class="body-text">
+              I actively take part in competitive hackathons including the <strong>Smart India Hackathon (SIH)</strong>, collaborate within peer developer communities, and contribute to open-source explorations in generative modeling.
+            </p>
+          </div>
+
+          <div class="about-sidebar">
+            <div class="info-card">
+              <h3 class="card-heading">Quick Facts</h3>
+              <ul class="fact-list">
+                <li>
+                  <span class="fact-label">Location</span>
+                  <span class="fact-val">Nashik / Pune, India</span>
+                </li>
+                <li>
+                  <span class="fact-label">Current Role</span>
+                  <span class="fact-val">AI &amp; DS Undergrad (2nd Year)</span>
+                </li>
+                <li>
+                  <span class="fact-label">Institution</span>
+                  <span class="fact-val">MET BKC, Nashik</span>
+                </li>
+                <li>
+                  <span class="fact-label">Focus Areas</span>
+                  <span class="fact-val">LLMs, Deep Learning, EDA</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">02 / Selected Work</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-desc">Practical implementations spanning deep learning architectures, statistical modeling, and data pipelines.</p>
+        </div>
+
+        <div class="projects-list">
+          <!-- Project 1: NanoGPT -->
+          <article class="project-item">
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="badge badge-accent">Deep Learning</span>
+                <span class="badge">NLP &amp; Transformers</span>
+              </div>
+              <h3 class="project-title">
+                <a href="https://github.com/atharva939/NanoGPT" target="_blank" rel="noopener noreferrer">
+                  NanoGPT — Transformer from Scratch
+                  <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </h3>
+              <p class="project-description">
+                Implemented a lightweight generative decoder-only Transformer language model in PyTorch. Covers scaled dot-product multi-head self-attention, learned positional embeddings, layer normalization, residual stream routing, and autoregressive temperature-scaled text generation.
+              </p>
+              <div class="project-tags">
+                <span class="tag">PyTorch</span>
+                <span class="tag">Python</span>
+                <span class="tag">Transformers</span>
+                <span class="tag">Self-Attention</span>
+                <span class="tag">NLP</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/atharva939" target="_blank" rel="noopener noreferrer" class="link-btn">
+                  View Source Code
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Climate Temperature EDA -->
+          <article class="project-item">
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="badge badge-accent">Data Science</span>
+                <span class="badge">Statistical Analysis</span>
+              </div>
+              <h3 class="project-title">
+                <a href="https://github.com/atharva939/Climate_Temprature_EDA" target="_blank" rel="noopener noreferrer">
+                  Climate Temperature EDA &amp; Visualization
+                  <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </h3>
+              <p class="project-description">
+                Comprehensive Exploratory Data Analysis (EDA) on multi-decade global climate temperature records. Built data cleansing workflows, handled anomalies and seasonal variations, and produced publication-quality visualizations identifying decadal warming anomalies.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">NumPy</span>
+                <span class="tag">Matplotlib</span>
+                <span class="tag">Seaborn</span>
+                <span class="tag">EDA</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/atharva939/Climate_Temprature_EDA" target="_blank" rel="noopener noreferrer" class="link-btn">
+                  View Repository
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Smart India Hackathon Innovation -->
+          <article class="project-item">
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="badge badge-accent">Hackathon</span>
+                <span class="badge">Problem Solving</span>
+              </div>
+              <h3 class="project-title">
+                <span>Smart India Hackathon (SIH) Solution</span>
+              </h3>
+              <p class="project-description">
+                Collaborated in an intensive national hackathon team to engineer solutions addressing real-world operational challenges. Focused on rapid prototyping, system architecture design, and algorithm optimization under tight deadlines.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Machine Learning</span>
+                <span class="tag">System Design</span>
+                <span class="tag">Prototyping</span>
+                <span class="tag">Team Collaboration</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">03 / Toolkit</span>
+          <h2 class="section-title">Technical Skills</h2>
+          <p class="section-desc">Technologies and frameworks I utilize for building machine learning pipelines and software applications.</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-category">
+            <div class="category-header">
+              <span class="category-icon">01</span>
+              <h3>Languages</h3>
+            </div>
+            <ul class="skill-pill-list">
+              <li>Python</li>
+              <li>SQL</li>
+              <li>C / C++</li>
+              <li>JavaScript / HTML5</li>
+            </ul>
+          </div>
+
+          <div class="skill-category">
+            <div class="category-header">
+              <span class="category-icon">02</span>
+              <h3>ML &amp; Data Science</h3>
+            </div>
+            <ul class="skill-pill-list">
+              <li>PyTorch</li>
+              <li>NumPy</li>
+              <li>Pandas</li>
+              <li>Scikit-Learn</li>
+              <li>Matplotlib</li>
+              <li>Seaborn</li>
+            </ul>
+          </div>
+
+          <div class="skill-category">
+            <div class="category-header">
+              <span class="category-icon">03</span>
+              <h3>Core Concepts</h3>
+            </div>
+            <ul class="skill-pill-list">
+              <li>Transformer Architecture</li>
+              <li>Deep Neural Networks</li>
+              <li>Exploratory Data Analysis</li>
+              <li>Statistical Inference</li>
+              <li>Data Structures &amp; Algorithms</li>
+            </ul>
+          </div>
+
+          <div class="skill-category">
+            <div class="category-header">
+              <span class="category-icon">04</span>
+              <h3>Tools &amp; Workflow</h3>
+            </div>
+            <ul class="skill-pill-list">
+              <li>Git &amp; GitHub</li>
+              <li>Jupyter Notebooks</li>
+              <li>VS Code</li>
+              <li>Linux / CLI</li>
+              <li>PostgreSQL / MySQL</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Timeline Section -->
+    <section id="education" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">04 / Background</span>
+          <h2 class="section-title">Education &amp; Milestones</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-period">2024 — Present</div>
+              <h3 class="timeline-title">B.E. in Artificial Intelligence &amp; Data Science</h3>
+              <p class="timeline-subtitle">MET BKC Institute of Engineering, Nashik</p>
+              <p class="timeline-detail">
+                Specializing in machine learning fundamentals, deep learning, statistical modeling, probability, and database management systems.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-period">2023 — 2024</div>
+              <h3 class="timeline-title">Higher Secondary Education (12th)</h3>
+              <p class="timeline-subtitle">Velammal International School, Chennai</p>
+              <p class="timeline-detail">
+                Science stream with strong emphasis on Mathematics, Physics, and foundational Computer Science.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-period">2021 — 2022</div>
+              <h3 class="timeline-title">Secondary School Certificate (10th)</h3>
+              <p class="timeline-subtitle">Velammal International School, Chennai</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-box">
+          <div class="contact-header">
+            <span class="section-tag">05 / Get in Touch</span>
+            <h2 class="contact-title">Let's build something impactful.</h2>
+            <p class="contact-text">
+              I'm actively looking for internship roles, research projects, and open-source collaborations in AI and Data Science. My inbox is always open.
+            </p>
+          </div>
+
+          <div class="contact-methods">
+            <div class="contact-method-card">
+              <span class="method-label">Direct Email</span>
+              <a href="mailto:atharvalakade05@gmail.com" class="method-value">atharvalakade05@gmail.com</a>
+              <button class="copy-inline-btn" data-email="atharvalakade05@gmail.com">
+                Copy to clipboard
+              </button>
+            </div>
+
+            <div class="contact-method-card">
+              <span class="method-label">Social &amp; Code</span>
+              <div class="social-links">
+                <a href="https://github.com/atharva939" target="_blank" rel="noopener noreferrer" class="social-chip">
+                  GitHub &rarr;
+                </a>
+                <a href="https://www.linkedin.com/in/atharva-lakade/" target="_blank" rel="noopener noreferrer" class="social-chip">
+                  LinkedIn &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">&copy; <span id="currentYear"></span> Atharva Lakade. Designed with clarity &amp; purpose.</p>
+      <a href="#hero" class="back-to-top" aria-label="Back to top">
+        Back to top &uarr;
+      </a>
     </div>
-</section>
+  </footer>
 
-<section id="education" class="section">
-<h2 class="section-title">Education</h2>
-<div class="timeline">
+  <!-- Notification Toast for Copy -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-<div class="timeline-item">
-<div class="timeline-dot"><i class="fas fa-school"></i></div>
-<div class="timeline-content">
-<h3>10th</h3>
-<p class="edu-institute">Velammal International School, Chennai</p>
-<p class="edu-year">2021 – 2022</p>
-</div>
-</div>
-
-<div class="timeline-item">
-<div class="timeline-dot"><i class="fas fa-graduation-cap"></i></div>
-<div class="timeline-content">
-<h3>12th</h3>
-<p class="edu-institute">Velammal International School, Chennai</p>
-<p class="edu-year">2023 – 2024</p>
-</div>
-</div>
-
-<div class="timeline-item">
-<div class="timeline-dot"><i class="fas fa-brain"></i></div>
-<div class="timeline-content">
-<h3>B.E Artificial Intelligence & Data Science</h3>
-<p class="edu-institute">MET BKC, Nashik</p>
-<p class="edu-year">2024 – Present</p>
-</div>
-</div>
-
-</div>
-</section>
-
-<section id="contact" class="section">
-<h2 class="section-title">Contact</h2>
-<div class="contact-clean">
-<a href="https://github.com/atharva939" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-<a href="https://www.linkedin.com/in/atharva-lakade/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-<a href="mailto:atharvalakade05@gmail.com"><i class="fas fa-envelope"></i> atharvalakade05@gmail.com</a>
-</div>
-</section>
-
-<footer>
-<p>© 2026 Atharva Lakade</p>
-</footer>
-
-<script>
-const hamburger=document.querySelector(".hamburger");
-const navLinks=document.querySelector(".nav-links");
-hamburger.addEventListener("click",()=>navLinks.classList.toggle("active"));
-
-const typing=document.querySelector(".typing");
-const words=["AI Student","Web Developer","Problem Solver"];
-let i=0,j=0,deleting=false;
-function type(){
-let current=words[i];
-if(!deleting){
-typing.textContent=current.slice(0,j++);
-if(j>current.length){deleting=true;setTimeout(type,1000);return;}
-}else{
-typing.textContent=current.slice(0,j--);
-if(j<0){deleting=false;i=(i+1)%words.length;}
-}
-setTimeout(type,deleting?50:100);
-}
-type();
-
-const sections=document.querySelectorAll(".section");
-window.addEventListener("scroll",()=>{
-sections.forEach(sec=>{
-if(sec.getBoundingClientRect().top<window.innerHeight-100){
-sec.classList.add("show");
-}
-});
-});
-
-/* PARTICLES */
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-let particles=[];
-class Particle{
-constructor(){
-this.x=Math.random()*canvas.width;
-this.y=Math.random()*canvas.height;
-this.size=Math.random()*2+1;
-this.speedX=(Math.random()-0.5)*1;
-this.speedY=(Math.random()-0.5)*1;
-}
-update(){
-this.x+=this.speedX;
-this.y+=this.speedY;
-if(this.x>canvas.width||this.x<0) this.speedX*=-1;
-if(this.y>canvas.height||this.y<0) this.speedY*=-1;
-}
-draw(){
-ctx.fillStyle="rgba(255,59,59,0.8)";
-ctx.beginPath();
-ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-ctx.fill();
-}
-}
-function init(){particles=[];for(let i=0;i<100;i++)particles.push(new Particle());}
-function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-particles.forEach(p=>{p.update();p.draw();});
-requestAnimationFrame(animate);
-}
-init();
-animate();
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
